@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        function checkEvenOrOdd() {
+            let number = prompt("Please enter a number:");
+            number = Number(number);
+            if (isNaN(number)) {
+                alert("Please enter a valid number.");
+                return;
+            }
+            if (number % 2 === 0) {
+                alert("The number " + number + " is even.");
+            } else {
+                alert("The number " + number + " is odd.");
+            }
+        }
+        checkEvenOrOdd();
+    </script>
+</body>
+</html>

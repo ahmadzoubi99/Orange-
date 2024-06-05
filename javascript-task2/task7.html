@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        function checkLogin() {
+            let predefinedUsername = "ahmad99"; 
+            let predefinedPassword = "12345678";
+            let enteredUsername = prompt("Enter your username:");
+            let enteredPassword = prompt("Enter your password:");
+            if (enteredUsername === predefinedUsername && enteredPassword === predefinedPassword) {
+                alert("Login successful!");
+            } else {
+                alert("Incorrect username or password.");
+            }
+        }
+
+        checkLogin();
+    </script>
+</body>
+</html>

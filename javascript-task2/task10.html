@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function checkMembershipType() {
+            let membershipType = prompt("Please enter your membership type (Basic, Silver, Gold):");
+            if (membershipType === null || membershipType === "") {
+                alert("Please enter a valid membership type.");
+                return;
+            }
+            membershipType = membershipType.toLowerCase();
+            let benefits;
+            if (membershipType === "basic") {
+                benefits = "Access to basic content";
+            } else if (membershipType === "silver") {
+                benefits = "Access to silver content";
+            } else if (membershipType === "gold") {
+                benefits = "Access to all content";
+            } else {
+                alert("Invalid membership type entered.");
+                return;
+            }
+            alert("Your membership benefits: " + benefits);
+        }
+        checkMembershipType();
+    </script>
+    
+</body>
+</html>

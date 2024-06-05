@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function verifyPassword() {
+
+            let password=window.prompt("please enter your password")
+            let confirmPassword = window.prompt("Please enter your confirmPassword:");
+            if (password === confirmPassword) {
+                window.alert("Login successful");
+            } else {
+                window.alert("Incorrect password");
+            }
+        }
+        verifyPassword();
+    </script>
+</body>
+</html>

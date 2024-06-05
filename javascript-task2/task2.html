@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ 
+    <script>
+        function checkAge(){
+            let age=window.prompt("please enter your age :")
+            age=Number(age);
+            if(isNaN(age)){
+                window.alert("Please enter a valid age .")
+                return;
+            }
+            if(age>=18){
+                window.alert("You are old enough to watch an adult-rated movie.");
+            }else{
+                window.alert("You are not old enough to watch an adult-rated movie.");  
+            }
+        }
+        checkAge();
+    </script>
+    
+</body>
+</html>

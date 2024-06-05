@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function determineGrade() {
+            let examGrade = prompt("Please enter your exam grade:");
+            examGrade = Number(examGrade);
+            if (isNaN(examGrade) || examGrade < 0 || examGrade > 100) {
+                alert("Please enter a valid exam grade between 0 and 100.");
+                return;
+            }
+            let grade;
+            if (examGrade >= 90 && examGrade <= 100) {
+                grade = "A";
+            } else if (examGrade >= 80 && examGrade <= 89) {
+                grade = "B";
+            } else if (examGrade >= 70 && examGrade <= 79) {
+                grade = "C";
+            } else if (examGrade >= 60 && examGrade <= 69) {
+                grade = "D";
+            } else {
+                grade = "F";
+            }
+            alert("Your academic grade is: " + grade);
+        }
+        determineGrade();
+    </script>
+</body>
+</html>
