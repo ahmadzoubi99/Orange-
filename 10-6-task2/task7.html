@@ -1,0 +1,43 @@
+<body>
+    <h1>Enter Your Favorite Drink</h1>
+    <div class="input-group">
+        <label for="favorite-drink">Favorite Drink:</label>
+        <input type="text" id="favorite-drink" required>
+    </div>
+    <button onclick="checkDrinkPrice()">Check Price</button>
+    <div class="result" id="result"></div>
+
+    <script>
+        function checkDrinkPrice() {
+            const drink = document.getElementById('favorite-drink').value.toLowerCase();
+            let price;
+            switch (drink) {
+                case 'banana':
+                    price = 20;
+                    break;
+                case 'apple':
+                    price = 15;
+                    break;
+                case 'orange':
+                    price = 10;
+                    break;
+                case 'mango':
+                    price = 25;
+                    break;
+                case 'grape':
+                    price = 18;
+                    break;
+                default:
+                    price = 'not available';
+            }
+
+            const resultDiv = document.getElementById('result');
+            if (price === 'not available') {
+                resultDiv.innerText = `Sorry, the price of a ${drink} drink is ${price}.`;
+            } else {
+                resultDiv.innerText = `The price of a ${drink} drink is ${price} dollars.`;
+            }
+        }
+    </script>
+</body>
+</html>

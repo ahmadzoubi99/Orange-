@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Pandigital Number</title>
+</head>
+<body>
+   <script>
+    let x=' ';
+    let counter=1;
+    let line=' ';
+    for(let i=1;i<=4;i++){
+    
+    for(let j=1;j<=i;j++){
+        line+=counter
+      counter++;
+    }
+    console.log(line);
+}
+    function isPandigitalNumber(pandigitalNum) {
+        const digits = new Set();
+        
+        while (pandigitalNum > 0) {
+            const digit = pandigitalNum % 10;
+            digits.add(digit);
+            pandigitalNum = Math.floor(pandigitalNum / 10);
+        }
+        for (let i = 0; i < 10; i++) {
+            if (!digits.has(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    console.log(isPandigitalNumber(98140723568910));  
+    console.log(isPandigitalNumber(90864523148909));  
+   </script> 
+</body>
+</html>
