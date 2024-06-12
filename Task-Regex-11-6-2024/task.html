@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        .error {
+            color: red;
+            display: none;
+        }
+    </style>
+    <script src="jsfile.js"></script>
+</head>
+<body>
+    <form action="">
+        <label for="firstName">First Name:</label>
+        <input type="text" onchange="firsname(value)" id="firstName" name="firstName" required>
+        <span class="error" id="firstNameError">Names must contain only letters.</span><br><br>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text " id="lastName"  onchange="lastname(value)"  name="lastName" required>
+        <span class="error" id="lastNameError">Names must contain only letters.</span><br><br>
+
+        <label for="birthDate">Birth Date:</label>
+        <input type="date" id="birthDate" onchange="ValidateBirthDate(value)" name="birthDate" required>
+        <span class="error" id="birthDateError">Please enter a valid birth date.</span><br><br>
+
+        <label for="email">Email:</label>
+        <input  type="email" onchange="ValidateEmail(value)" id="email" name="email" required>
+        <span class="error" id="emailError">Invalid email format.</span><br><br>
+
+        <label for="confirmEmail">Confirm Email:</label>
+        <input onchange="ValidateConfirmEmail(value)"  type="email" id="confirmEmail" name="confirmEmail" required>
+        <span class="error" id="confirmEmailError">Emails do not match.</span><br><br>
+
+        <label for="password">Password:</label>
+        <input onchange="ValidatePassword(value)"  type="password" id="password" name="password" required>
+        <span class="error" id="passwordError">Password must start with a capital letter, contain at least two numbers, one special character, and be between 8 and 32 characters long.</span><br><br>
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input onchange="ValidateConfirmPassword(value)"  type="password" id="confirmPassword" name="confirmPassword" required>
+        <span class="error" id="confirmPasswordError">Passwords do not match.</span><br><br>
+
+        <label for="mobile">Mobile Number:</label>
+        <input onchange="mobile(value)"  type="tel" id="mobile" name="mobile" required>
+        <span class="error" id="mobileError">Mobile number must be 10 digits long.</span><br><br>
+
+    </form>
+
+</body>
+</html>
