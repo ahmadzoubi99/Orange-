@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Form</title>
+    <style>
+        .card {
+            border: 2px solid #007BFF;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .card h3 {
+            margin-top: 0;
+        }
+        .card p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <form id="projectForm">
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required><br><br>
+        
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea><br><br>
+
+        <label for="userTypes">User Types:</label>
+        <input type="text" id="userTypes" name="userTypes" required><br><br>
+
+        <label for="technology">Technology Used:</label>
+        <input type="text" id="technology" name="technology" required><br><br>
+
+        <input type="submit" onclick="storeProjectData(event)" value="Submit">
+    </form>
+
+    <div id="cardContainer"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            displayProjectData();
+        });
+
+        function storeProjectData(event) {
+            event.preventDefault();
+
+            var subject = document.getElementById("subject").value;
+            var description = document.getElementById("description").value;
+            var userTypes = document.getElementById("userTypes").value;
+            var technology = document.getElementById("technology").value;
+
+            var projectData = {
+                subject: subject,
+                description: description,
+                userTypes: userTypes,
+                technology: technology
+            };
+
+            sessionStorage.setItem('projectData', JSON.stringify(projectData));
+        }
+
+        function displayProjectData() {
+            var projectData = JSON.parse(sessionStorage.getItem('projectData'));
+
+            if (projectData) {
+                var cardContainer = document.getElementById('cardContainer');
+                cardContainer.innerHTML = `
+                    <div class="card">
+                        <h3>Project Information</h3>
+                        <p><strong>Subject:</strong> ${projectData.subject}</p>
+                        <p><strong>Description:</strong> ${projectData.description}</p>
+                        <p><strong>User Types:</strong> ${projectData.userTypes}</p>
+                        <p><strong>Technology Used:</strong> ${projectData.technology}</p>
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

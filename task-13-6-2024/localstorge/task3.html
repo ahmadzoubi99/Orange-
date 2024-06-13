@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration and Login Form</title>
+    <link rel="stylesheet" href="task3.css">
+    <style>
+        .valid {
+            color: green;
+        }
+        .invalid {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Registration Form</h2>
+        <form id="personalDataForm">
+            <label for="firstname">First Name:</label>
+            <input type="text" id="firstname" name="firstname" pattern="[A-Za-z]+" title="Only letters allowed" required>
+            <span id="firstnameStatus"></span>
+            
+            <label for="lastname">Last Name:</label>
+            <input type="text" id="lastname" name="lastname" pattern="[A-Za-z]+" title="Only letters allowed" required>
+            <span id="lastnameStatus"></span>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <span id="emailStatus"></span>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" pattern=".{6,}" title="Password must be at least 6 characters" required>
+            <span id="passwordStatus"></span>
+
+            <input type="submit" value="Submit" onclick="validateAndStoreData(event)">
+        </form>
+    </div>
+
+    <div class="container">
+        <h2>Login Form</h2>
+        <form id="loginForm">
+            <label for="loginEmail">Email:</label>
+            <input type="email" id="loginEmail" name="loginEmail" required>
+
+            <label for="loginPassword">Password:</label>
+            <input type="password" id="loginPassword" name="loginPassword" required>
+
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+    <div class="container">
+        <div id="cardContainer"></div>
+    </div>
+
+    <script>
+        function validateAndStoreData(event) {
+            event.preventDefault();
+
+            var firstname = document.getElementById('firstname').value;
+            var lastname = document.getElementById('lastname').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+
+            var namePattern = /^[A-Za-z]+$/;
+            var emailPattern = /\S+@\S+\.\S+/;
+            var passwordPattern = /.{6,}/;
+
+            var isFirstnameValid = namePattern.test(firstname);
+            var isLastnameValid = namePattern.test(lastname);
+            var isEmailValid = emailPattern.test(email);
+            var isPasswordValid = passwordPattern.test(password);
+
+    
+            displayValidationStatus('firstname', isFirstnameValid, 'First name must contain only letters.');
+            displayValidationStatus('lastname', isLastnameValid, 'Last name must contain only letters.');
+            displayValidationStatus('email', isEmailValid, 'Please enter a valid email address.');
+            displayValidationStatus('password', isPasswordValid, 'Password must be at least 6 characters.');
+
+            if (isFirstnameValid && isLastnameValid && isEmailValid && isPasswordValid) {
+                var registerData = {
+                    firstname: firstname,
+                    lastname: lastname,
+                    email: email,
+                    password: password
+                };
+                localStorage.setItem('registerData', JSON.stringify(registerData));
+                alert('Registration successful!');
+            } else {
+                alert('Please fill in all required fields correctly.');
+            }
+        }
+
+        function displayValidationStatus(fieldId, isValid, message) {
+            var statusElement = document.getElementById(fieldId + 'Status');
+            statusElement.textContent = isValid ? 'Accept' : message;
+            statusElement.className = isValid ? 'valid' : 'invalid';
+        }
+
+        function login(event) {
+            event.preventDefault();
+
+            var loginEmail = document.getElementById('loginEmail').value;
+            var loginPassword = document.getElementById('loginPassword').value;
+
+            var storedData = JSON.parse(localStorage.getItem('registerData'));
+
+            if (storedData) {
+                if (loginEmail === storedData.email && loginPassword === storedData.password) {
+                    displayUserData(storedData);
+                } else {
+                    alert('Invalid email or password!');
+                }
+            } else {
+                alert('No user found. Please register first.');
+            }
+        }
+
+        function displayUserData(userData) {
+            var cardContainer = document.getElementById('cardContainer');
+            cardContainer.innerHTML = `
+                <div class="card">
+                    <h3>User Information</h3>
+                    <p><strong>First Name:</strong> ${userData.firstname}</p>
+                    <p><strong>Last Name:</strong> ${userData.lastname}</p>
+                    <p><strong>Email:</strong> ${userData.email}</p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

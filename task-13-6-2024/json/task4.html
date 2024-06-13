@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="storeData(event)">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name">
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email">
+        <label for="phonenumber">Phone number:</label>
+        <input type="text" name="phonenumber" id="phonenumber">
+        <input type="submit" value="Click on me to store data">
+    </form>
+    <div></div>
+    <hr>
+    <div id="Container1"></div>
+
+    <div id="Container">
+        <table id="dataTable" border="1">
+            <thead>
+                <tr>
+                    <!-- <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th> -->
+                </tr>
+            </thead>
+            <tbody id="dataBody">
+            </tbody>
+        </table>
+    </div>
+    <hr>
+    
+    <script>
+        function storeData(event){
+            event.preventDefault(); 
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var phonenumber = document.getElementById('phonenumber').value;
+
+            var formData = {
+                name: name,
+                email: email,
+                phonenumber: phonenumber
+            };
+            sessionStorage.setItem('data', JSON.stringify(formData));
+            var retrievedData = JSON.parse(sessionStorage.getItem('data'));
+
+            var existingData = JSON.parse(localStorage.getItem('formData')) || [];
+            existingData.push(retrievedData);
+            localStorage.setItem('formData', JSON.stringify(existingData));
+
+            displayData();
+        }
+
+        function displayData(){
+            var tableBody = document.getElementById('dataBody');
+            tableBody.innerHTML = ''; 
+
+            var storedData = JSON.parse(localStorage.getItem('formData')) || [];
+
+            storedData.forEach(function(data) {
+                var row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${data.name}</td>
+                    <td>${data.email}</td>
+                    <td>${data.phonenumber}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+
+            var latestData = storedData[storedData.length - 1];
+            document.getElementById('Container1').innerHTML = `
+                <p style="display:inline;background-color:green;">${latestData.name}</p>
+                <p style="display:inline;background-color:red;">${latestData.email}</p>
+                <p style="display:inline;background-color:yellow;">${latestData.phonenumber}</p>
+                <br>
+                <hr>
+            `;
+        }
+
+        displayData(); 
+    </script>
+</body>
+</html>
